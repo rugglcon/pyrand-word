@@ -12,10 +12,12 @@ The script can either be run by itself or with a single argument; the directory 
 
 ```
 # without argument
- rand-word
+rand-word
 ```
 
 ```
 # with argument
- rand-word foo/
+rand-word foo/
 ```
+
+There's also a help option, which you can see the usage if you pass `help` as the only argument.

@@ -7,6 +7,7 @@ created by Connor Ruggles
 """
 
 import json
+import os
 import random
 import requests
 import sys
@@ -17,6 +18,9 @@ BASE_URL = "http://api.wordnik.com:80/v4/word.json/"
 def load_words(path):
     try:
         filename = path + "/words_alpha.txt"
+        if not os.path.exists(filename):
+            print("rand-word: cannot stat " + str(filename))
+            sys.exit(1)
         with open(filename, "r") as dictionary:
             words = dictionary.readlines()
             words = [x.strip('\n') for x in words]
@@ -40,13 +44,29 @@ def print_defs(word_info):
         print(str(i) + ". " + defin["text"])
         i += 1
 
+def usage():
+    print("usage: rand-word [path]")
+    print("Options:")
+    print("path : full path to the file \"words_alpha.txt\".")
+    print("       Defaults to the directory where the script")
+    print("       is located.")
+    sys.exit(1)
+
 if __name__ == "__main__":
+    if len(sys.argv) > 2:
+        usage()
     if len(sys.argv) > 1:
+        if sys.argv[1] == "help":
+            usage()
         path = sys.argv[1]
     else:
         path = "."
     english_words = load_words(path)
+    if isinstance(english_words, str):
+        print("Error: " + english_words)
+        sys.exit(1)
     word_info = get_def(english_words)
     while len(word_info) <= 0:
         word_info = get_def(english_words)
     print_defs(word_info)
+    sys.exit(0)
