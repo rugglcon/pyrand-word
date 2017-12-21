@@ -9,15 +9,15 @@ created by Connor Ruggles
 import json
 import os
 import random
-import requests
 import sys
+import requests
 
 API_KEY = "YOUR API KEY HERE"
 BASE_URL = "http://api.wordnik.com:80/v4/word.json/"
 
-def load_words(path):
+def load_words(dirpath):
     try:
-        filename = path + "/words_alpha.txt"
+        filename = dirpath + "/words_alpha.txt"
         if not os.path.exists(filename):
             print("rand-word: cannot stat " + str(filename))
             sys.exit(1)
@@ -33,14 +33,15 @@ def get_def(word_list):
     params = "/definitions?limit=200&api_key=" + API_KEY
     req = requests.get(BASE_URL + word_list[num_word] + params)
     if req.status_code == 200:
-        return json.loads(json.dumps(req.json()))
+        return (word_list[num_word], json.loads(json.dumps(req.json())))
     else:
         print("error retrieving word; try again later")
         sys.exit(1)
 
-def print_defs(word_info):
+def print_defs(defs):
+    print(defs[0])
     i = 1
-    for defin in word_info:
+    for defin in defs[1]:
         print(str(i) + ". " + defin["text"])
         i += 1
 
