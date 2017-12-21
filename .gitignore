@@ -1,3 +1,4 @@
 .vscode
 *.pyc
 .api_key
+.*.swp
