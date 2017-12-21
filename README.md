@@ -16,8 +16,8 @@ rand-word
 ```
 
 ```
-# with argument
-rand-word foo/
+# with argument, leave off the trailing slash
+rand-word foo
 ```
 
 There's also a help option, which you can see the usage if you pass `help` as the only argument.
