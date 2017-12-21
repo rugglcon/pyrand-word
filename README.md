@@ -10,12 +10,12 @@ Just clone this repository and run `sudo ./setup.sh`, then you can use it by run
 
 The script can either be run by itself or with a single argument; the directory of the file `words_alpha.txt`, which is included in this repository. It contains the word list. The setup script copies the list to the same location as the script so it can be in the same directory, however if you would like to move that file to a different directory you'll have to pass the new directory in as the argument:
 
-`# without argument
-
+```
+# without argument
  rand-word
-`
+```
 
-`# with argument
-
+```
+# with argument
  rand-word foo/
-`
+```
