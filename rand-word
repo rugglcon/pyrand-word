@@ -61,7 +61,7 @@ if __name__ == "__main__":
             usage()
         path = sys.argv[1]
     else:
-        path = "."
+        path = "/usr/bin"
     english_words = load_words(path)
     if isinstance(english_words, str):
         print("Error: " + english_words)
